@@ -18,7 +18,7 @@ const { text } = schema.tree
  * @apiError 404 Tean not found.
  */
 router.post('/',
-  body({ text }),
+  body({ text.trim().replace(/ /g, '%20') }),
   create)
 
 /**
