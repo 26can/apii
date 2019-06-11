@@ -32,7 +32,8 @@ export const create = ({ bodymen: { body } }, res, next) =>
         res.send({
           textLength:{withSpaces:tl1, withoutSpaces:tl2},
           wordCount:wc,
-          characterCount:freq
+          characterCount:freq,
+          text:body.text
         });
 
   //res.send({
