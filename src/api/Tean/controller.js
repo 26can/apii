@@ -4,19 +4,13 @@ import { Tean } from '.'
 export const create = ({ bodymen: { body } }, res, next) =>
   Tean.create(body)
     .then(function(textan){
-        var text = body.text.toLowercase();
-        var tl1 = text.length;
-
-        var tl2 = text.replace(/\s/g, "").length;
-
-        var wc = text.trim().split(/\s+/).length;
-        if (!text || text.trim().length === 0) {wc =0 ;}
-
-         text = text.split('.').join('');
-         text = text.split('').sort().join('');
+        var tl1 = body.text.length;
+        var tl2 = body.text.replace(/\s/g, "").length;
+        var wc = body.text.trim().split(/\s+/).length;
+        var text1 = body.text.split('').sort().join('');
         var freq = {};
-          for (var i=0; i<text.length;i++) {
-              var character = text.charAt(i);
+          for (var i=0; i<text1.length;i++) {
+              var character = text1.charAt(i);
               if (isNaN(character) && (character !=" ")){
 
                 if (freq[character] )
