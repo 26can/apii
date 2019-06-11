@@ -32,8 +32,8 @@ export const create = (req, res, next) =>
         res.send({
           textLength:{withSpaces:tl1, withoutSpaces:tl2},
           wordCount:wc,
-          characterCount:freq,
-          text:req.body.text
+          characterCount:freq
+          //text:req.body.text
         });
 
   //res.send({
