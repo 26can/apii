@@ -1,10 +1,10 @@
 import { success, notFound } from '../../services/response/'
 import { Tean } from '.'
 
-export const create = ({ bodymen: { body } }, res, next) =>
-  Tean.create(body)
+export const create = (req, res, next) =>
+  Tean.create(req.body)
     .then(function(textan){
-        var text1 = body.text.toLowerCase();
+        var text1 = req.body.text.toLowerCase();
         var tl1 = text1.length;
         var tl2 = text1.replace(/\s/g, "").length;
         var wc = text1.trim().split(/\s+/).length;
@@ -33,7 +33,7 @@ export const create = ({ bodymen: { body } }, res, next) =>
           textLength:{withSpaces:tl1, withoutSpaces:tl2},
           wordCount:wc,
           characterCount:freq,
-          text:body.text
+          text:req.body.text
         });
 
   //res.send({
