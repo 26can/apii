@@ -3,7 +3,38 @@ import { Tean } from '.'
 
 export const create = ({ bodymen: { body } }, res, next) =>
   Tean.create(body)
-    .then((tean) => tean.view(true))
+    .then(function(textan){
+        var tl1 = body.text.length;
+        var tl2 = body.text.replace(/\s/g, "").length;
+        var wc = body.text.trim().split(/\s+/).length;
+        var text1 = body.text.split('').sort().join('');
+        var freq = {};
+          for (var i=0; i<text1.length;i++) {
+              var character = text1.charAt(i);
+              if (isNaN(character) && (character !=" ")){
+
+                if (freq[character] )
+                 {
+                   freq[character]++;
+                } else {
+                   freq[character] = 1;
+                }
+
+              }
+
+
+          }
+        freq = Object.keys(freq).map(e => ({[e]: freq[e]}));
+        res.send({
+          textLength:{withSpaces:tl1, withoutSpaces:tl2},
+          wordCount:wc,
+          characterCount:freq
+        });
+
+  //res.send({
+  //  type: 'POST',
+  //  text:req.body.text
+ })
     .then(success(res, 201))
     .catch(next)
 
